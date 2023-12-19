@@ -13,6 +13,9 @@
              }
         }
     }
+
+    $sql = "SELECT * FROM categories";
+    $resultCategories = $conn -> query($sql);
 ?>
 
 
@@ -38,6 +41,18 @@
                 echo "<p>$categoryMessage</p>";
             }
         ?>
+        <div class="categories">
+            <!-- verificare -->
+            <?php
+                if($resultCategories->num_rows > 0) {
+                    while ($row = $resultCategories->fetch_assoc()) {
+                        echo "<div class='category'>
+                            <h2>$row[name]</h2>
+                        </div>";
+                    }
+                }
+            ?>
+        </div>
     </main>
 </body>
 </html>
