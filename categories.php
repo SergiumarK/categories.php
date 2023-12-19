@@ -12,6 +12,17 @@
                 $categoryMessage = "Category not created";
              }
         }
+
+        if ($_POST["type"] === "subcategory") {
+            $name = $_POST["name"];
+            $categoryId = $_POST["category_id"];
+            $sql = "INSERT INTO subcategories(name, category_id) VALUES('$name', $categoryId)";
+            IF ($conn->query($sql) === true) {
+                $subcategoryMessage = "Subcategory created successfully";
+             } else {
+                $subcategoryMessage = "Subcategory not created";
+             }
+        }
     }
 
     $sql = "SELECT * FROM categories ORDER BY name ASC";
