@@ -14,7 +14,7 @@
         }
     }
 
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM categories ORDER BY name ASC";
     $resultCategories = $conn -> query($sql);
 ?>
 
@@ -46,8 +46,14 @@
             <?php
                 if($resultCategories->num_rows > 0) {
                     while ($row = $resultCategories->fetch_assoc()) {
+                        $categoryId = $row['category_id'];
                         echo "<div class='category'>
                             <h2>$row[name]</h2>
+                            <form method='post'>
+                                <input type='text' name='name' placeholder='Subcategory name' required>
+                                <input type='hidden' name='category_id' value='$row[category_id]'>
+                                <button name='type' value='subcategory'>Create subcategory</button>
+                            </form>
                         </div>";
                     }
                 }
